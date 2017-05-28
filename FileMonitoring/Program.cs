@@ -6,28 +6,27 @@ namespace FileMonitoring
 {
 	class MainClass
 	{
+		const string dir = "D:\\Documents\\C";
+
 		static void CheckChange(FileInfo[] files)
 		{
 			bool isChanged = false;
-			string dir = "c:\\test";
-			if (!Directory.Exists(dir + "\\copy"))
-				Directory.CreateDirectory(dir + "\\copy");
+
+			if (!Directory.Exists(dir + "\\copy")) Directory.CreateDirectory(dir + "\\copy");
 			while (true)
 			{
 				DirectoryInfo info2 = new DirectoryInfo(dir);
 				FileInfo[] files2 = info2.GetFiles();
 
-				//foreach (var item2 in files2 files)
 				for (int i = 0; i < files.Length; i++)
 					if (files[i].LastWriteTime != files2[i].LastWriteTime)
 					{
-						Console.WriteLine("Izmenilsya " + files2[i].Name);
 						files2[i].CopyTo(dir + "\\copy\\" + files2[i].Name, true);
 						isChanged = true;
 						break;
 					}
-				if (isChanged)
-					break;
+				if (isChanged) break;
+
 				Thread.Sleep(50);
 			}
 					
@@ -36,7 +35,7 @@ namespace FileMonitoring
 		{
 			while (true)
 			{
-				DirectoryInfo info = new DirectoryInfo("c:\\test");
+				DirectoryInfo info = new DirectoryInfo(dir);
 				FileInfo[] files = info.GetFiles();
                 CheckChange(files);
 			}
