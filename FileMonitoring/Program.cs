@@ -6,15 +6,15 @@ namespace FileMonitoring
 {
 	class MainClass
 	{
-		const string dir = "D:\\Documents\\C";
-		const string bak_dir = "\\copy\\";
-		const string prefix = ".bak";
+		const string dir = "D:\\Documents\\C"; // Directory which is checked
+		const string bak_dir = "\\copy\\"; // Directory of backup files
+		const string prefix = ".bak"; // Prefix for backup files
 
 		static void CheckChange(FileInfo[] files)
 		{
 			bool isChanged = false;
 
-			if (!Directory.Exists(dir + bak_dir)) Directory.CreateDirectory(dir + bak_dir);
+			if (!Directory.Exists(dir + bak_dir)) Directory.CreateDirectory(dir + bak_dir);  // Checking backup directory
 			while (true)
 			{
 				DirectoryInfo info2 = new DirectoryInfo(dir);
@@ -22,13 +22,13 @@ namespace FileMonitoring
 
 				for (int i = 0; i < files.Length; i++)
 				{
-					if (files[i].LastWriteTime != files2[i].LastWriteTime)
+					if (files[i].LastWriteTime != files2[i].LastWriteTime) // If new file != old file ->>
 					{
-						if (File.Exists(dir + bak_dir + files2[i].Name + prefix))
+						if (File.Exists(dir + bak_dir + files2[i].Name + prefix)) // If file exist, starting for cycle where adding num of file in prefix
 						{
 							for (int j = 0; j <= int.MaxValue; j++)
 							{
-								if (!File.Exists(dir + bak_dir + files2[i].Name + prefix + j))
+								if (!File.Exists(dir + bak_dir + files2[i].Name + prefix + j)) // If file with num not exist, backuping
 								{
 									files2[i].CopyTo(dir + bak_dir + files2[i].Name + prefix + j, true);
 									break;
@@ -37,9 +37,10 @@ namespace FileMonitoring
 						}
 						else
 						{
-							files2[i].CopyTo(dir + bak_dir + files2[i].Name + prefix, true);
+							files2[i].CopyTo(dir + bak_dir + files2[i].Name + prefix, true); // Backuping, if its new file in backup dir
 						}
-						isChanged = true;
+
+						isChanged = true; // bool for breaking while cycle
 						break;
 					}
 				}
