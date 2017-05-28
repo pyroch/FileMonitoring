@@ -1,0 +1,12 @@
+D:\Documents\Projects\FileMonitoring\FileMonitoring\bin\Debug\FileMonitoring.exe
+D:\Documents\Projects\FileMonitoring\FileMonitoring\bin\Debug\FileMonitoring.pdb
+D:\Documents\Projects\FileMonitoring\FileMonitoring\bin\Debug\mscorlib.dll
+D:\Documents\Projects\FileMonitoring\FileMonitoring\bin\Debug\ru\mscorlib.resources.dll
+D:\Documents\Projects\FileMonitoring\FileMonitoring\bin\Debug\normidna.nlp
+D:\Documents\Projects\FileMonitoring\FileMonitoring\bin\Debug\normnfc.nlp
+D:\Documents\Projects\FileMonitoring\FileMonitoring\bin\Debug\normnfd.nlp
+D:\Documents\Projects\FileMonitoring\FileMonitoring\bin\Debug\normnfkc.nlp
+D:\Documents\Projects\FileMonitoring\FileMonitoring\bin\Debug\normnfkd.nlp
+D:\Documents\Projects\FileMonitoring\FileMonitoring\obj\x86\Debug\FileMonitoring.csprojResolveAssemblyReference.cache
+D:\Documents\Projects\FileMonitoring\FileMonitoring\obj\x86\Debug\FileMonitoring.exe
+D:\Documents\Projects\FileMonitoring\FileMonitoring\obj\x86\Debug\FileMonitoring.pdb
