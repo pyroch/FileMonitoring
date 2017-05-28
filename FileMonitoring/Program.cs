@@ -8,6 +8,7 @@ namespace FileMonitoring
 	{
 		const string dir = "D:\\Documents\\C";
 		const string bak_dir = "\\copy\\";
+		const string prefix = ".bak";
 
 		static void CheckChange(FileInfo[] files)
 		{
@@ -23,20 +24,20 @@ namespace FileMonitoring
 				{
 					if (files[i].LastWriteTime != files2[i].LastWriteTime)
 					{
-						if (File.Exists(dir + bak_dir + files2[i].Name + ".bak"))
+						if (File.Exists(dir + bak_dir + files2[i].Name + prefix))
 						{
 							for (int j = 0; j <= int.MaxValue; j++)
 							{
-								if (!File.Exists(dir + bak_dir + files2[i].Name + ".bak" + j))
+								if (!File.Exists(dir + bak_dir + files2[i].Name + prefix + j))
 								{
-									files2[i].CopyTo(dir + bak_dir + files2[i].Name + ".bak" + j, true);
+									files2[i].CopyTo(dir + bak_dir + files2[i].Name + prefix + j, true);
 									break;
 								}
 							}
 						}
 						else
 						{
-							files2[i].CopyTo(dir + bak_dir + files2[i].Name + ".bak", true);
+							files2[i].CopyTo(dir + bak_dir + files2[i].Name + prefix, true);
 						}
 						isChanged = true;
 						break;
