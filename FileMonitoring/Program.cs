@@ -1,12 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Threading;
 
 namespace FileMonitoring
 {
 	class MainClass
 	{
-		const string dir = "D:\\Documents\\C"; // Directory which is checked
+		const string dir = "C:\\Test\\"; // Directory which is checked
 		const string bak_dir = "\\copy\\"; // Directory of backup files
 		const string prefix = ".bak"; // Prefix for backup files
 
@@ -26,7 +25,7 @@ namespace FileMonitoring
 					{
 						if (File.Exists(dir + bak_dir + files2[i].Name + prefix)) // If file exist, starting for cycle where adding num of file in prefix
 						{
-							for (int j = 0; j <= int.MaxValue; j++)
+							for (int j = 1; j <= int.MaxValue; j++)
 							{
 								if (!File.Exists(dir + bak_dir + files2[i].Name + prefix + j)) // If file with num not exist, backuping
 								{
@@ -46,7 +45,7 @@ namespace FileMonitoring
 				}
 				if (isChanged) break;
 
-				Thread.Sleep(50);
+				Thread.Sleep(1000);
 			}
 		}
 
@@ -56,7 +55,7 @@ namespace FileMonitoring
 			{
 				DirectoryInfo info = new DirectoryInfo(dir);
 				FileInfo[] files = info.GetFiles();
-                CheckChange(files);
+			    CheckChange(files);
 			}
 		}
 	}
