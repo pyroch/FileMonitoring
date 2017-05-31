@@ -1,10 +1,13 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading;
 
 namespace FileMonitoring
 {
 	class MainClass
 	{
+		static bool flag_OW = false; // Flag for owerwriting
+
 		const string dir = "C:\\Test\\"; // Directory which is checked
 		const string bak_dir = "\\copy\\"; // Directory of backup files
 		const string prefix = ".bak"; // Prefix for backup files
@@ -23,7 +26,7 @@ namespace FileMonitoring
 				{
 					if (files[i].LastWriteTime != files2[i].LastWriteTime) // If new file != old file ->>
 					{
-						if (File.Exists(dir + bak_dir + files2[i].Name + prefix)) // If file exist, starting for cycle where adding num of file in prefix
+						if (File.Exists(dir + bak_dir + files2[i].Name + prefix) && !flag_OW) // If file exist, and has no flag OW, starting for cycle where adding num of file in prefix
 						{
 							for (int j = 1; j <= int.MaxValue; j++)
 							{
@@ -51,11 +54,15 @@ namespace FileMonitoring
 
 		public static void Main(string[] args)
 		{
+			foreach (var args_s in args) // If Main receivec argument -OW, bak files will be owerwritten
+				if (args_s == "-OW")
+					flag_OW = true;
+			
 			while (true)
 			{
 				DirectoryInfo info = new DirectoryInfo(dir);
 				FileInfo[] files = info.GetFiles();
-			    CheckChange(files);
+				CheckChange(files);
 			}
 		}
 	}
