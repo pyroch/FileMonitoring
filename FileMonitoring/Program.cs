@@ -12,11 +12,11 @@ namespace FileMonitoring
 		static string bak_dir; // Directory of backup files
 		const string prefix = ".bak"; // Prefix for backup files
 
-
 		static void Init()
 		{
+
 			Console.WriteLine("Choose a new directory? (N - no)");
-			if (Console.ReadLine() == "N" && File.Exists(@"./settings"))
+			if (Console.ReadKey().Key == ConsoleKey.N && File.Exists(@"./settings"))
 			{
 				using (StreamReader sr = new StreamReader(@"./settings", System.Text.Encoding.Default))
 				{
@@ -26,17 +26,14 @@ namespace FileMonitoring
 			}
 			else
 			{
-				Console.WriteLine("Type directory what to be monitored");
+				Console.WriteLine("\nType directory what to be monitored");
 				dir = Console.ReadLine();
+
 				Console.WriteLine("Type directory for backup files");
-				bak_dir = Console.ReadLine();
-				bak_dir += @"\";
+				bak_dir = Console.ReadLine() + @"\";
 
 				Console.WriteLine("Add owerwrite flag? (Y - yes)");
-				if (Console.ReadLine() == "Y")
-					flag_OW = true;
-				else
-					flag_OW = false;
+				flag_OW = Console.ReadKey().Key == ConsoleKey.Y;
 					
 
 				using (StreamWriter sw = new StreamWriter(@"./settings", false, System.Text.Encoding.Default))
@@ -45,10 +42,13 @@ namespace FileMonitoring
 					sw.WriteLine(bak_dir);
 				}
 			}
+            CheckChange();
 		}
 
-		static void CheckChange(FileInfo[] files)
+		static void CheckChange()
 		{
+			DirectoryInfo info = new DirectoryInfo(dir);
+			FileInfo[] files = info.GetFiles();
 			bool isChanged = false;
 
 			if (!Directory.Exists(bak_dir)) Directory.CreateDirectory(bak_dir);  // Checking backup directory
@@ -61,7 +61,7 @@ namespace FileMonitoring
 				{
 					if (files[i].LastWriteTime != files2[i].LastWriteTime) // If new file != old file ->>
 					{
-						string fullName = bak_dir + files2[i].Name + prefix;
+						string fullName = string.Concat(bak_dir, files2[i].Name, prefix);
 						if (File.Exists(fullName) && !flag_OW) // If file exist, and has no flag OW, starting for cycle where adding num of file in prefix
 						{
 							for (int j = 1; j <= int.MaxValue; j++)
@@ -86,22 +86,13 @@ namespace FileMonitoring
 
 				Thread.Sleep(1000);
 			}
+
+			CheckChange();
 		}
 
 		public static void Main(string[] args)
 		{
 			Init();
-
-			foreach (var args_s in args) // If Main receivec argument -OW, bak files will be owerwritten
-				if (args_s == "-OW")
-					flag_OW = true;
-			
-			while (true)
-			{
-				DirectoryInfo info = new DirectoryInfo(dir);
-				FileInfo[] files = info.GetFiles();
-				CheckChange(files);
-			}
 		}
 	}
 }
