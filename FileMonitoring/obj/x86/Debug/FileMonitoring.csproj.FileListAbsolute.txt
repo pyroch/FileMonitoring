@@ -10,3 +10,9 @@ D:\Documents\Projects\FileMonitoring\FileMonitoring\bin\Debug\normnfkd.nlp
 D:\Documents\Projects\FileMonitoring\FileMonitoring\obj\x86\Debug\FileMonitoring.csprojResolveAssemblyReference.cache
 D:\Documents\Projects\FileMonitoring\FileMonitoring\obj\x86\Debug\FileMonitoring.exe
 D:\Documents\Projects\FileMonitoring\FileMonitoring\obj\x86\Debug\FileMonitoring.pdb
+C:\Users\Pyro\Source\Repos\FileMonitoring\FileMonitoring\bin\Debug\FileMonitoring.exe
+C:\Users\Pyro\Source\Repos\FileMonitoring\FileMonitoring\bin\Debug\FileMonitoring.pdb
+C:\Users\Pyro\Source\Repos\FileMonitoring\FileMonitoring\obj\x86\Debug\FileMonitoring.csprojAssemblyReference.cache
+C:\Users\Pyro\Source\Repos\FileMonitoring\FileMonitoring\obj\x86\Debug\FileMonitoring.csproj.CoreCompileInputs.cache
+C:\Users\Pyro\Source\Repos\FileMonitoring\FileMonitoring\obj\x86\Debug\FileMonitoring.exe
+C:\Users\Pyro\Source\Repos\FileMonitoring\FileMonitoring\obj\x86\Debug\FileMonitoring.pdb
